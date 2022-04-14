@@ -34,7 +34,7 @@
                 <div class="collapse navbar-collapse" id="navbarsTop">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="?command=home">Home</a>
+                            <a class="nav-link active" aria-current="page" href="../index.php">Home</a>
                         </li>
     
                         <li class="nav-item">
@@ -42,16 +42,9 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="../CS4750_Final/templates/pokedex.php">PokeDex</a>
+                            <a class="nav-link" href="pokedex.php">PokeDex</a>
                         </li>
-
-                        
-                        <li class="nav-item">
-                            <a class="nav-link" href="../CS4750_Final/templates/login.php">Login</a>
-                        </li>
-
-                        
-                        
+    
     
                             
                     </ul>
@@ -59,7 +52,49 @@
             </div>
         </nav>
         
+
+
+        <form action="?command=login" method="post">
+    
+      <div class="container">
+        <h2>Login</h2>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required/>
+            </div>
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" name="name"/>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required/>
+            </div>
+           
+        <hr>
+            
+        <button class="registerbtn" type="submit">Login</button>
+        <label>
+          <input type="checkbox" checked="checked" name="remember"> Remember me
+        </label>
+        <hr>
+      </div>
+      
+      
+    
+      <div class="container" style="background-color:#f1f1f1">
+        <span class="psw">Forgot <a href="?command=forgotpw">password?</a></span>
         
+      </div>
+      <div class="container" style="background-color:#f1f1f1">
+        <span class="psw">New User? <a href="?command=register">Register Here!</a></span>
+        
+      </div>
+      
+    </form>
+
+
+
 
 
 
