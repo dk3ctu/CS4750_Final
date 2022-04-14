@@ -37,10 +37,12 @@
                         </li>
     
                         <li class="nav-item">
-                            <a class="nav-link" href="?command=calendar">Teams</a>
+                            <a class="nav-link" href="teams.php">Teams</a>
                         </li>
 
-                      
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.php">PokeDex</a>
+                        </li>
     
     
                             
@@ -49,7 +51,7 @@
             </div>
         </nav>
         
-
+        
 
 
 
@@ -71,7 +73,7 @@
     
                 <ul class="nav col-md-4 justify-content-end">
                     <li class="nav-item"><a href="?command=home" class="nav-link px-2 text-muted">Home</a></li>
-                    <li class="nav-item"><a href="?command=calendar" class="nav-link px-2 text-muted">Teams</a></li>
+                    <li class="nav-item"><a href="?command=teams" class="nav-link px-2 text-muted">Teams</a></li>
                     
                 </ul>
             </footer>

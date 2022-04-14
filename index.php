@@ -32,8 +32,7 @@ $all_pokemons = getAllPokemon();
     <th width="20%">Type 1</th>  
     <th width="20%">Type 2</th>  
     <th width="20%">Generation</th> 
-    <th width="12%">Update ?</th>
-    <th width="12%">Delete ?</th> 
+
   </tr>
   </thead>
   <?php foreach ($all_pokemons as $pokemon): ?>
@@ -55,12 +54,9 @@ $all_pokemons = getAllPokemon();
     <td><?php echo $pokemon['type2']; ?></td> 
     <td><?php echo $pokemon['generation']; ?></td>  
     <td>
-      <form action="classes/sqlfuncs.php" method="post">
-        <input type="submit" value="Update" name="btnAction" class="btn btn-primary" />
-        <input type="hidden" name="pokemon_to_update" value="<?php echo $pokemon['name'] ?>" />      
-      </form>
+    
     </td>
-    <td>delete</td> 
+   
   </tr>
   <?php endforeach; ?>
 
