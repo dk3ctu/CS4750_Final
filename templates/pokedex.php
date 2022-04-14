@@ -1,6 +1,6 @@
 <?php
 
-require('../connect-db.php');
+//require('../classes/connect.php');
 require('../classes/sqlfuncs.php');
 
 $all_pokemons = getAllPokemon();

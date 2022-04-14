@@ -1,10 +1,10 @@
 <?php
 
-
+include("connect.php");
 
 function getAllPokemon()
 {
-	global $db;
+	$db = new mysqli($host, $user, $pass, $dbname);
 	$query = "select * from pokemon";
 
 // bad	
