@@ -16,7 +16,12 @@ class Controller {
             case "home":
                 $this->home();
                 break;
-            
+            case "pokedex":
+                $this->pokedex();
+                break;
+            case "teams":
+                $this->teams();
+                break;
             case "logout":
                 $this->destroyCookies();
             case "login":
@@ -29,8 +34,38 @@ class Controller {
 
     private function home(){
         
-        include("templates/homepage.php");
+        include("templates/home.php");
     }
+    private function pokedex(){
+        
+        include("templates/pokedex.php");
+    }
+    private function teams(){
+        
+        include("templates/teams.php");
+    }
+
+    function getAllPokemon()
+{
+	$db = new mysqli($host, $user, $pass, $dbname);
+	$query = "select * from pokemon";
+
+// bad	
+	// $statement = $db->query($query);     // 16-Mar, stopped here, still need to fetch and return the result 
+	
+// good: use a prepared stement 
+// 1. prepare
+// 2. bindValue & execute
+	$statement = $db->prepare($query);
+	$statement->execute();
+
+	// fetchAll() returns an array of all rows in the result set
+	$results = $statement->fetchAll();   
+
+	$statement->closeCursor();
+
+	return $results;
+}
   
     
 
@@ -65,13 +100,14 @@ class Controller {
                 } else {
                     setcookie("name", $_POST["name"], time() + 3600);
                     setcookie("email", $_POST["email"], time() + 3600);
+                    setcookie("score", 0, time() + 3600);
                     $_SESSION["name"] = $_POST["name"];
                     $_SESSION["email"] = $_POST["email"];
                     header("Location: ?command=home");
                 }
             }
         }
-        include("../templates/login.php");
+        include("templates/login.php");
     }
 
    

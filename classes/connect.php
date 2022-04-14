@@ -16,9 +16,12 @@ class Config {
 
 //uva
 
-$username = 'dk3ctu'; 
-$password = 'Winter2022!!';
-$host = 'mysql01.cs.virginia.edu';
-$dbname = 'dk3ctu';
 
-
+class connect {
+    public static $db = [
+        "host" => "mysql01.cs.virginia.edu",//same for CS4640
+        "user" => "dk3ctu",//computing id for CS4640
+        "pass" => "Winter2022!!",//password from collab for CS4640
+        "database" => "dk3ctu"//computing id for CS4640
+    ];
+}

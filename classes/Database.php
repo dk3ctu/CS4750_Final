@@ -1,18 +1,17 @@
 <?php
-include("connect.php");
-class Database {
-    public $mysqli;
 
-  
+class Database {
+    private $mysqli;
 
     public function __construct() {
         mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-        $this->mysqli = new mysqli($host, $user, $pass, $dbname);
-
+        $this->mysqli = new mysqli(connect::$db["host"], 
+                connect::$db["user"], connect::$db["pass"], 
+                connect::$db["database"]);
     }
 
     public function query($query, $bparam=null, ...$params) {
-        $stmt = $this->db->prepare($query);
+        $stmt = $this->mysqli->prepare($query);
 
         if ($bparam != null)
             $stmt->bind_param($bparam, ...$params);

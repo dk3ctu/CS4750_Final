@@ -38,16 +38,16 @@
                         </li>
     
                         <li class="nav-item">
-                            <a class="nav-link" href="teams.php">Teams</a>
+                            <a class="nav-link" href="?command=teams">Teams</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="../CS4750_Final/templates/pokedex.php">PokeDex</a>
+                            <a class="nav-link" href="?command=pokedex">PokeDex</a>
                         </li>
 
                         
                         <li class="nav-item">
-                            <a class="nav-link" href="../CS4750_Final/templates/login.php">Login</a>
+                            <a class="nav-link" href="?command=login">Login</a>
                         </li>
 
                         

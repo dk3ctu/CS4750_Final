@@ -34,17 +34,24 @@
                 <div class="collapse navbar-collapse" id="navbarsTop">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="../index.php">Home</a>
+                            <a class="nav-link active" aria-current="page" href="?command=home">Home</a>
                         </li>
     
                         <li class="nav-item">
-                            <a class="nav-link" href="teams.php">Teams</a>
+                            <a class="nav-link" href="?command=teams">Teams</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="pokedex.php">PokeDex</a>
+                            <a class="nav-link" href="?command=pokedex">PokeDex</a>
                         </li>
-    
+
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="?command=login">Login</a>
+                        </li>
+
+                        
+                        
     
                             
                     </ul>
