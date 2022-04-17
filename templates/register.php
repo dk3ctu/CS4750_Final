@@ -72,72 +72,77 @@
 
 
         
-    
-      <div class="container">
-      <?php if (!empty($error_msg)) { 
+<!--     
+        <form action = "?command=register" method= "post">
+        <div class="container">
+          <h2>Register</h2>
+          <p>Fill in this form to create an account.</p>
+          <hr>
+      
+          <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required/>
+            </div>
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" name="name"/>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required/>
+            </div>  
+          <hr>
+      
+          
+          <button type="submit" class="registerbtn">Register</button>
+        </div>
+      
+        <div class="container">
+          <p>Already have an account? <a href="?command=login">Sign in</a>.</p>
+        </div>
+    </form> -->
+    <?php if (!empty($error_msg)) { 
           echo "<div class='alert alert-danger'>$error_msg</div>";
         }
         ?>
-      <form action="?command=login" method="post">
-        <h2>Sign in</h2>
+    <form action="?command=register" method="post">
+        <h2>Register</h2>
         
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input type="email" class="form-control" id="email" name="email" required/>
             </div>
-        
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" name="name"/>
+            </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control" id="password" name="password" required/>
             </div>           
         <hr>
             
-        <button class="registerbtn" type="submit">Login</button>
+        <button class="registerbtn" type="submit">Register</button>
        
         <hr>
 
-        </form>
-
-        <div class="container" style="background-color:#f1f1f1">
-            <span class="psw">New User? <a href="?command=registerRedirect">Register Here!</a></span>
-        
-        </div>
-
-        
-      </div>
-      
-      
-
-    
-      
-    
-
-
-
-
-
-
-
-
-
-
-
-
        
 
+        
+    </form>
 
        
-
+    <span class="psw">Already have an account? <a href="?command=login">Log In Here</a></span>
         <div class="col-sm-12 row" style="float: left;">
         <div class="container">
             <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
                 <p class="col-md-4 mb-0 text-muted">© 2022 Pokemon Team Builder</p>
     
-            
+               
             </footer>
         </div>
         </div> 
-        
+      
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
     </body>
 </html>

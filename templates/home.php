@@ -28,18 +28,37 @@
       
                 <div class="collapse navbar-collapse" id="navbarsTop">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
+                    <?php 
+                        if(isset($_COOKIE['email'])) {
+                           echo 
+                        '<li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="?command=home">Home</a>
-                        </li>
-                        <li class="nav-item">
+                        </li>';
+                            echo
+                        '<li class="nav-item">
                             <a class="nav-link" href="?command=teams">Teams</a>
-                        </li>
-                        <li class="nav-item">
+                        </li>';
+                            echo
+                        '<li class="nav-item">
                             <a class="nav-link" href="?command=pokedex">PokeDex</a>
-                        </li>
-                        <li class="nav-item">
+                        </li>';
+                        }
+                        ?>
+                        <?php
+                        if(!isset($_COOKIE['email'])){
+                        echo '<li class="nav-item">
                             <a class="nav-link" href="?command=login">Login</a>
-                        </li>
+                        </li>';
+                        }
+                        ?>
+                        <?php 
+                        if(isset($_COOKIE['email'])){
+                            echo
+                         '<li class="nav-item">
+                            <a href="?command=logout" class="nav-link"> Logout</a>
+                        </li>';
+                        }
+                        ?>
 
                         
                         
@@ -54,16 +73,18 @@
 
 
         
-    <?php if (isset($_COOKIE["name"])) : ?>
-    <p> Welcome</p>
-    <strong>
+    <?php if (isset($_COOKIE["email"])) : ?>
+    <p style = "display: inline-block; font-size: 50px;" > Welcome,   </p> 
+    <strong style = "font-size: 50px;">
     <?php 
 
         echo $_COOKIE["name"]; 
 
          ?>
-</strong>
-
+</strong>  
+<?php 
+  echo  '<img src = "images/waving-pikachu.gif"/>';
+?>
 <?php endif ?>
 
 
@@ -71,10 +92,7 @@
         <div class="container">
             <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
                 <p class="col-md-4 mb-0 text-muted">© 2022 Pokemon Team Builder</p>
-                <ul class="nav col-md-4 justify-content-end">
-                    <li class="nav-item"><a href="?command=home" class="nav-link px-2 text-muted">Home</a></li>
-                    <li class="nav-item"><a href="?command=teams" class="nav-link px-2 text-muted">Teams</a></li>
-                </ul>
+            
             </footer>
         </div>
         </div> 

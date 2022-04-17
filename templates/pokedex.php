@@ -12,18 +12,38 @@
       
                 <div class="collapse navbar-collapse" id="navbarsTop">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="?command=home">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="?command=teams">Teams</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="?command=pokedex">PokeDex</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="?command=login">Login</a>
-                        </li>
+                    <?php 
+                    
+                     if(isset($_COOKIE['email'])) {
+                        echo 
+                     '<li class="nav-item">
+                         <a class="nav-link active" aria-current="page" href="?command=home">Home</a>
+                     </li>';
+                         echo
+                     '<li class="nav-item">
+                         <a class="nav-link" href="?command=teams">Teams</a>
+                     </li>';
+                         echo
+                     '<li class="nav-item">
+                         <a class="nav-link" href="?command=pokedex">PokeDex</a>
+                     </li>';
+                     }
+                     ?>
+                     <?php
+                     if(!isset($_COOKIE['email'])){
+                     echo '<li class="nav-item">
+                         <a class="nav-link" href="?command=login">Login</a>
+                     </li>';
+                     }
+                     ?>
+                     <?php 
+                     if(isset($_COOKIE['email'])){
+                         echo
+                      '<li class="nav-item">
+                         <a href="?command=logout" class="nav-link"> Logout</a>
+                     </li>';
+                     }
+                     ?>
                     </ul>
                 </div>
             </div>

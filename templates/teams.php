@@ -33,24 +33,37 @@
       
                 <div class="collapse navbar-collapse" id="navbarsTop">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
+                    <?php 
+                        if(isset($_COOKIE['email'])) {
+                           echo 
+                        '<li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="?command=home">Home</a>
-                        </li>
-    
-                        <li class="nav-item">
+                        </li>';
+                            echo
+                        '<li class="nav-item">
                             <a class="nav-link" href="?command=teams">Teams</a>
-                        </li>
-
-                        <li class="nav-item">
+                        </li>';
+                            echo
+                        '<li class="nav-item">
                             <a class="nav-link" href="?command=pokedex">PokeDex</a>
-                        </li>
-
-                        
-                        <li class="nav-item">
+                        </li>';
+                        }
+                        ?>
+                        <?php
+                        if(!isset($_COOKIE['email'])){
+                        echo '<li class="nav-item">
                             <a class="nav-link" href="?command=login">Login</a>
-                        </li>
-
-                        
+                        </li>';
+                        }
+                        ?>
+                        <?php 
+                        if(isset($_COOKIE['email'])){
+                            echo
+                         '<li class="nav-item">
+                            <a href="?command=logout" class="nav-link"> Logout</a>
+                        </li>';
+                        }
+                        ?>
                         
     
                             
@@ -63,29 +76,87 @@
 
 
 
-        <form action="?command=login" method="post">
-        <h2>Login</h2>
+        <form action="?command=teams" method="post">
+        <h2>Build your team:</h2>
         
             <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" required/>
+                <label for="team_name" class="form-label">Team Name</label>
+                <input type="team_name" class="form-control" id="team_name" name="team_name" required/>
             </div>
             <div class="mb-3">
-                <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control" id="name" name="name"/>
+                <label for="pokemon_names"> Choose a pokemon: </label>
+                <select name="pokemon1" id="pokemon1"> 
+                    <option value = "none"> None </option>
+                    <?php
+                     foreach($list_of_pokemon as $pokemon): ?>
+                        <option value =  "<?php $pokemon['name'] ?> " >  <?php echo $pokemon['name']; ?> </option>';
+                    <?php endforeach; ?>
+
+                </select>
+                <select name="pokemon2" id="pokemon2"> 
+                <option value = "none"> None </option>
+                    <?php
+                     foreach($list_of_pokemon as $pokemon): ?>
+                        <option value =  "<?php $pokemon['name'] ?> " >  <?php echo $pokemon['name']; ?> </option>';
+                    <?php endforeach; ?>
+
+                </select>
+                <select name="pokemon3" id="pokemon3"> 
+                <option value = "none"> None </option>
+                    <?php
+                     foreach($list_of_pokemon as $pokemon): ?>
+     
+                        <option value =  "<?php $pokemon['name'] ?> " >  <?php echo $pokemon['name']; ?> </option>';
+
+                    <?php endforeach; ?>
+
+                </select>
+                <select name="pokemon4" id="pokemon4"> 
+                <option value = "none"> None </option>
+                    <?php
+                     foreach($list_of_pokemon as $pokemon): ?>
+                        <option value =  "<?php $pokemon['name'] ?> " >  <?php echo $pokemon['name']; ?> </option>';
+                       
+                    <?php endforeach; ?>
+
+                </select>
+                <select name="pokemon5" id="pokemon5"> 
+                <option value = "none"> None </option>
+                    <?php
+                     foreach($list_of_pokemon as $pokemon): ?>
+                  
+                        <option value =  "<?php $pokemon['name'] ?> " >  <?php echo $pokemon['name']; ?> </option>';
+        
+                    <?php endforeach; ?>
+
+                </select>
+                <select name="pokemon6" id="pokemon6"> 
+                <option value = "none"> None </option>
+                    <?php
+                     foreach($list_of_pokemon as $pokemon): ?>
+                        <option value =  "<?php $pokemon['name'] ?> " >  <?php echo $pokemon['name']; ?> </option>';
+                    <?php endforeach; ?>
+
+                </select>
+
             </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password" required/>
-            </div>           
+       
         <hr>
-            
-        <button class="registerbtn" type="submit">Login</button>
-        <label>
-          <input type="checkbox" checked="checked" name="remember"> Remember me
-        </label>
+        <button type="submit">Create</button>
+        
         <hr>
         </form>
+
+        <table class="w3-table w3-bordered w3-card-4" style="width:90%">
+
+
+
+        </table>
+        
+
+
+
+        
 </body>
 
 </html>
