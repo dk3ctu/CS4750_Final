@@ -42,8 +42,8 @@ class Controller
     {
         if (!isset($_COOKIE['email'])) {
             header("Location: ?command=registerRedirect");
-        } 
-        
+        }
+
         $user = [
             "name" => $_COOKIE["name"],
             "email" => $_COOKIE["email"],
@@ -54,12 +54,11 @@ class Controller
         include("templates/home.php");
     }
 
-
     private function pokedex()
     {
         if (!isset($_COOKIE['email'])) {
             header("Location: ?command=registerRedirect");
-        } 
+        }
 
         $user = [
             "name" => $_COOKIE["name"],
@@ -67,8 +66,6 @@ class Controller
         ];
         $user_id = $this->db->query("select uid from user where email = ?;", "s", $user["email"]);
         $user_id = $user_id[0]["uid"];
-
-        $list_of_pokemon = $this->db->query("select * from pokemon");
 
         include("templates/pokedex.php");
     }
