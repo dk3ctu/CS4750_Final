@@ -25,10 +25,9 @@ class Controller {
             case "logout":
                 $this->destroyCookies();
             case "login":
-                $this->login();
-                break;
             default:
                 $this->login();
+                break;
         }
     }
 
@@ -39,6 +38,7 @@ class Controller {
     private function pokedex(){
         
         include("templates/pokedex.php");
+        
     }
     private function teams(){
         
@@ -47,15 +47,10 @@ class Controller {
 
     function getAllPokemon()
 {
-	$db = new mysqli($host, $user, $pass, $dbname);
+	$db = new mysqli(connect::$db['host'], connect::$db['user'], connect::$db['pass'], connect::$db[
+        'database']);
 	$query = "select * from pokemon";
 
-// bad	
-	// $statement = $db->query($query);     // 16-Mar, stopped here, still need to fetch and return the result 
-	
-// good: use a prepared stement 
-// 1. prepare
-// 2. bindValue & execute
 	$statement = $db->prepare($query);
 	$statement->execute();
 
@@ -85,13 +80,12 @@ class Controller {
                 if (password_verify($_POST["password"], $data[0]["password"])) {
                     setcookie("name", $data[0]["name"], time() + 3600);
                     setcookie("email", $data[0]["email"], time() + 3600);
-                    $_SESSION["name"] = $_POST["name"];
-                    $_SESSION["email"] = $_POST["email"];
                     header("Location: ?command=home");
                 } else {
                     $error_msg = "Wrong password";
                 }
             } else { // empty, no user found
+                $error_msg = "New user created";
                 $insert = $this->db->query("insert into user (name, email, password) values (?, ?, ?);", 
                         "sss", $_POST["name"], $_POST["email"], 
                         password_hash($_POST["password"], PASSWORD_DEFAULT));
@@ -100,9 +94,6 @@ class Controller {
                 } else {
                     setcookie("name", $_POST["name"], time() + 3600);
                     setcookie("email", $_POST["email"], time() + 3600);
-                    setcookie("score", 0, time() + 3600);
-                    $_SESSION["name"] = $_POST["name"];
-                    $_SESSION["email"] = $_POST["email"];
                     header("Location: ?command=home");
                 }
             }

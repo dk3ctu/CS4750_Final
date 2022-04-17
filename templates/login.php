@@ -36,24 +36,15 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="?command=home">Home</a>
                         </li>
-    
                         <li class="nav-item">
                             <a class="nav-link" href="?command=teams">Teams</a>
                         </li>
-
                         <li class="nav-item">
                             <a class="nav-link" href="?command=pokedex">PokeDex</a>
                         </li>
-
-                        
                         <li class="nav-item">
                             <a class="nav-link" href="?command=login">Login</a>
                         </li>
-
-                        
-                        
-    
-                            
                     </ul>
                 </div>
             </div>
@@ -61,10 +52,16 @@
         
 
 
-        <form action="?command=login" method="post">
+        
     
       <div class="container">
+      <?php if (!empty($error_msg)) { 
+          echo "<div class='alert alert-danger'>$error_msg</div>";
+        }
+        ?>
+      <form action="?command=login" method="post">
         <h2>Login</h2>
+        
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input type="email" class="form-control" id="email" name="email" required/>
@@ -76,8 +73,7 @@
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control" id="password" name="password" required/>
-            </div>
-           
+            </div>           
         <hr>
             
         <button class="registerbtn" type="submit">Login</button>
@@ -85,6 +81,7 @@
           <input type="checkbox" checked="checked" name="remember"> Remember me
         </label>
         <hr>
+        </form>
       </div>
       
       
@@ -98,7 +95,7 @@
         
       </div>
       
-    </form>
+    
 
 
 

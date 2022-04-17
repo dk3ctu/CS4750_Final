@@ -7,12 +7,12 @@ function getAllPokemon()
 	$db = new mysqli($host, $user, $pass, $dbname);
 	$query = "select * from pokemon";
 
-// bad	
+	// bad	
 	// $statement = $db->query($query);     // 16-Mar, stopped here, still need to fetch and return the result 
 	
-// good: use a prepared stement 
-// 1. prepare
-// 2. bindValue & execute
+	// good: use a prepared stement 
+	// 1. prepare
+	// 2. bindValue & execute
 	$statement = $db->prepare($query);
 	$statement->execute();
 
