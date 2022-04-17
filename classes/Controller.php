@@ -23,14 +23,14 @@ class Controller
             case "teams":
                 $this->teams();
                 break;
-            case "register":
-                $this->register();
-                break;
             case "logout":
                 $this->logout();
                 break;
             case "login":
                 $this->login();
+                break;
+            case "register":
+                $this->register();
                 break;
             default:
                 $this->registerRedirect();
@@ -40,6 +40,10 @@ class Controller
 
     private function home()
     {
+        if (!isset($_COOKIE['email'])) {
+            header("Location: ?command=registerRedirect");
+        } 
+        
         $user = [
             "name" => $_COOKIE["name"],
             "email" => $_COOKIE["email"],
@@ -53,6 +57,10 @@ class Controller
 
     private function pokedex()
     {
+        if (!isset($_COOKIE['email'])) {
+            header("Location: ?command=registerRedirect");
+        } 
+
         $user = [
             "name" => $_COOKIE["name"],
             "email" => $_COOKIE["email"],

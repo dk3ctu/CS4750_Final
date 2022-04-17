@@ -24,7 +24,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Main Navigation Bar">
         <div class="container-xl">
-            <a class="navbar-brand primary-text" href="?command=homepage">Pokemon Team Builder</a>
+            <a class="navbar-brand primary-text" href="?command=home">Pokemon Team Builder</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsTop" aria-controls="navbarsTop" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -32,13 +32,13 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <?php if (isset($_COOKIE['email'])) : ?>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="?command=home">Home</a>
+                            <a class="nav-link" href="?command=home">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="?command=teams">Teams</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="?command=pokedex">PokeDex</a>
+                            <a class="nav-link" href="?command=pokedex">Pokédex</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="?command=logout">Logout</a>
