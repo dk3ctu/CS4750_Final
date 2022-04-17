@@ -2,7 +2,10 @@
 <html>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <body>
-
+ 
+<?php if (!isset($_COOKIE['email'])) {
+            header("Location: ?command=registerRedirect");
+        }?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Main Navigation Bar">
             <div class="container-xl">
                 <a class="navbar-brand primary-text" href="?command=homepage">Pokemon Team Builder</a>

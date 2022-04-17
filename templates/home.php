@@ -17,7 +17,9 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"> 
         <style>@media print {#ghostery-tracker-tally {display:none !important}}</style>
     </head>
-
+    <?php if (!isset($_COOKIE['email'])) {
+            header("Location: ?command=registerRedirect");
+        }?>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Main Navigation Bar">
             <div class="container-xl">
