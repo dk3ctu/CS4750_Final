@@ -95,7 +95,7 @@
                     <option value = "none"> None </option>
                     <?php
                      foreach($list_of_pokemon as $pokemon): ?>
-                        <option value =  "<?php echo .$pokemon['name']; ?> " >  <?php echo $pokemon['name']; ?> </option>';
+                        <option value =  "<?php echo $pokemon['name']; ?> " >  <?php echo $pokemon['name']; ?> </option>';
                     <?php endforeach; ?>
 
                 </select>
@@ -103,7 +103,7 @@
                 <option value = "none"> None </option>
                     <?php
                      foreach($list_of_pokemon as $pokemon): ?>
-                        <option value =  "<?php echo .$pokemon['name']; ?> " >  <?php echo $pokemon['name']; ?> </option>';
+                        <option value =  "<?php echo $pokemon['name']; ?> " >  <?php echo $pokemon['name']; ?> </option>';
                     <?php endforeach; ?>
 
                 </select>
@@ -112,7 +112,7 @@
                     <?php
                      foreach($list_of_pokemon as $pokemon): ?>
      
-                        <option value =  "<?php echo .$pokemon['name']; ?> " >  <?php echo $pokemon['name']; ?> </option>';
+                        <option value =  "<?php echo $pokemon['name']; ?> " >  <?php echo $pokemon['name']; ?> </option>';
 
                     <?php endforeach; ?>
 
@@ -121,7 +121,7 @@
                 <option value = "none"> None </option>
                     <?php
                      foreach($list_of_pokemon as $pokemon): ?>
-                        <option value =  "<?php echo .$pokemon['name']; ?> " >  <?php echo $pokemon['name']; ?> </option>';
+                        <option value =  "<?php echo $pokemon['name']; ?> " >  <?php echo $pokemon['name']; ?> </option>';
                        
                     <?php endforeach; ?>
 
@@ -131,7 +131,7 @@
                     <?php
                      foreach($list_of_pokemon as $pokemon): ?>
                   
-                        <option value =  "<?php echo .$pokemon['name']; ?> " >  <?php echo $pokemon['name']; ?> </option>';
+                        <option value =  "<?php echo $pokemon['name']; ?> " >  <?php echo $pokemon['name']; ?> </option>';
         
                     <?php endforeach; ?>
 
@@ -140,7 +140,7 @@
                 <option value = "none"> None </option>
                     <?php
                      foreach($list_of_pokemon as $pokemon): ?>
-                        <option value =  "<?php echo .$pokemon['name']; ?> " >  <?php echo $pokemon['name']; ?> </option>';
+                        <option value =  "<?php echo $pokemon['name']; ?> " >  <?php echo $pokemon['name']; ?> </option>';
                     <?php endforeach; ?>
 
                 </select>
