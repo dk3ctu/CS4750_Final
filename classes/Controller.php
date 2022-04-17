@@ -61,6 +61,7 @@ class Controller
         $user_id = $user_id[0]["uid"];
 
         $list_of_pokemon = $this->db->query("select * from pokemon");
+
         include("templates/pokedex.php");
     }
 
@@ -73,10 +74,7 @@ class Controller
         $user_id = $this->db->query("select uid from user where email = ?;", "s", $user["email"]);
         $user_id = $user_id[0]["uid"];
 
-
         $list_of_pokemon = $this->db->query("select * from pokemon");
-
-
 
         if (isset($_POST["pokemon1"])) {
             // if "None", then don't bother trying to do an insert
@@ -118,9 +116,6 @@ class Controller
                 //    $pokedex_number =  $this->db->query("select pokedex_number from pokemon where name = ?;", "s" ,$_POST["pokemon2"]);
                 //     $insert = $this->db->query("insert into pokemon_team (team_name, uid, pokedex_number, pokemon_name) values (?, ?, ?, ?);", 
                 //         "siis", $_POST["team_name"], $user_id, $pokedex_number, $_POST["pokemon2"]);
-
-
-
             }
         }
         if (isset($_POST["pokemon3"])) {
@@ -190,15 +185,7 @@ class Controller
             }
         }
 
-
-
         include("templates/teams.php");
-    }
-
-    private function destroyCookies()
-    {
-        setcookie("name", "", time() - 3600);
-        setcookie("email", "", time() - 3600);
     }
 
     private function logout()
@@ -208,12 +195,13 @@ class Controller
 
         header("Location: ?command=login");
     }
+
     private function login()
     {
         if (isset($_POST["email"])) {
             $data = $this->db->query("select * from user where email = ?;", "s", $_POST["email"]);
             if (empty($data)) {
-                $error_msg = "User does not exist";
+                $error_msg = "A user under this email does not exist.";
             } else if (!empty($data)) {
                 if (password_verify($_POST["password"], $data[0]["password"])) {
                     setcookie("name", $data[0]["name"], time() + 3600);
@@ -221,7 +209,7 @@ class Controller
 
                     header("Location: ?command=home");
                 } else {
-                    $error_msg = "Wrong password";
+                    $error_msg = "Wrong password!";
                 }
             }
         }
@@ -230,9 +218,9 @@ class Controller
 
     private function registerRedirect()
     {
-
         include("templates/register.php");
     }
+
     private function register()
     {
         $data = $this->db->query("select * from user where email = ?;", "s", $_POST["email"]);
@@ -245,14 +233,8 @@ class Controller
                 password_hash($_POST["password"], PASSWORD_DEFAULT)
             );
         } else if (!empty($data)) {
-            $error_msg = "User already exists";
-        } else {
-            setcookie("name", $_POST["name"], time() + 3600);
-            setcookie("email", $_POST["email"], time() + 3600);
-
-            header("Location: ?command=login");
+            $error_msg = "A user under this email already exists!";
         }
-
 
         include("templates/register.php");
     }
