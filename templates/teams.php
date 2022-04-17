@@ -74,8 +74,14 @@
 
 
 
-
-
+        <?php if (!empty($error_msg)) { 
+          echo "<div class='alert alert-danger'>$error_msg</div>";
+        }
+        ?>
+         <?php if (!empty($check_for_existing_team_name)) { 
+          echo "<div class='alert alert-danger'>$check_for_existing_team_name </div>";
+        }
+        ?>
         <form action="?command=teams" method="post">
         <h2>Build your team:</h2>
         
@@ -89,7 +95,7 @@
                     <option value = "none"> None </option>
                     <?php
                      foreach($list_of_pokemon as $pokemon): ?>
-                        <option value =  "<?php $pokemon['name'] ?> " >  <?php echo $pokemon['name']; ?> </option>';
+                        <option value =  "<?php echo .$pokemon['name']; ?> " >  <?php echo $pokemon['name']; ?> </option>';
                     <?php endforeach; ?>
 
                 </select>
@@ -97,7 +103,7 @@
                 <option value = "none"> None </option>
                     <?php
                      foreach($list_of_pokemon as $pokemon): ?>
-                        <option value =  "<?php $pokemon['name'] ?> " >  <?php echo $pokemon['name']; ?> </option>';
+                        <option value =  "<?php echo .$pokemon['name']; ?> " >  <?php echo $pokemon['name']; ?> </option>';
                     <?php endforeach; ?>
 
                 </select>
@@ -106,7 +112,7 @@
                     <?php
                      foreach($list_of_pokemon as $pokemon): ?>
      
-                        <option value =  "<?php $pokemon['name'] ?> " >  <?php echo $pokemon['name']; ?> </option>';
+                        <option value =  "<?php echo .$pokemon['name']; ?> " >  <?php echo $pokemon['name']; ?> </option>';
 
                     <?php endforeach; ?>
 
@@ -115,7 +121,7 @@
                 <option value = "none"> None </option>
                     <?php
                      foreach($list_of_pokemon as $pokemon): ?>
-                        <option value =  "<?php $pokemon['name'] ?> " >  <?php echo $pokemon['name']; ?> </option>';
+                        <option value =  "<?php echo .$pokemon['name']; ?> " >  <?php echo $pokemon['name']; ?> </option>';
                        
                     <?php endforeach; ?>
 
@@ -125,7 +131,7 @@
                     <?php
                      foreach($list_of_pokemon as $pokemon): ?>
                   
-                        <option value =  "<?php $pokemon['name'] ?> " >  <?php echo $pokemon['name']; ?> </option>';
+                        <option value =  "<?php echo .$pokemon['name']; ?> " >  <?php echo $pokemon['name']; ?> </option>';
         
                     <?php endforeach; ?>
 
@@ -134,7 +140,7 @@
                 <option value = "none"> None </option>
                     <?php
                      foreach($list_of_pokemon as $pokemon): ?>
-                        <option value =  "<?php $pokemon['name'] ?> " >  <?php echo $pokemon['name']; ?> </option>';
+                        <option value =  "<?php echo .$pokemon['name']; ?> " >  <?php echo $pokemon['name']; ?> </option>';
                     <?php endforeach; ?>
 
                 </select>
@@ -148,7 +154,14 @@
         </form>
 
         <table class="w3-table w3-bordered w3-card-4" style="width:90%">
+        <?php
+            foreach($user_pokemon_teams): ?>
+            <?php
+                echo .$user_pokemon_teams['team_name'];
+            ?>
 
+
+        <?php endforeach; ?>
 
 
         </table>

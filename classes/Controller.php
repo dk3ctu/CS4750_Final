@@ -70,21 +70,18 @@ class Controller {
 
         $list_of_pokemon = $this->db->query("select * from pokemon");
        
-
-
+        $check_for_existing_team_name = $this->db->query("select * from pokemon_team where team_name = ?;", "s", $_POST["team_name"]);
+        if(empty($check_for_existing_team_name)){
         if(isset($_POST["pokemon1"])) {
             // if "None", then don't bother trying to do an insert
             // otherwise, insert into pokemon_team table with pokemon_name as the pokemon from the drop down menu
-            if($_POST["pokemon1"] != "None"){
-                $pokemon1 = $_POST["pokemon1"];
-                $pokedex_number =  $this->db->query("select pokedex_number from pokemon where name = '%$pokemon1%' ");
-                
-                 $insert = $this->db->query("insert into pokemon_team (team_name, uid, pokedex_number, pokemon_name) values (?, ?, ?, ?);", 
-                     "siis", $_POST["team_name"], $user_id, $pokedex_number, $_POST["pokemon1"]);
-            //    $pokedex_number =  $this->db->query("select pokedex_number from pokemon where name = ?;", "s", $_POST["pokemon1"]);
-            //    $pokemon1 = $_POST["pokemon1"];
-            //     $insert = $this->db->query("insert into pokemon_team (team_name, uid, pokedex_number, pokemon_name) values (?, ?, ?, ?);", 
-            //         "siis", $_POST["team_name"], $user_id, $pokedex_number, $_POST["pokemon1"]);
+            if($_POST["pokemon1"] != "none"){
+              
+               $pokedex_number =  $this->db->query("select pokedex_number from pokemon where name = ?;", "s", $_POST["pokemon1"]);
+              
+        
+                $insert = $this->db->query("insert into pokemon_team (team_name, uid, pokedex_number, pokemon_name) values (?, ?, ?, ?);", 
+                    "siis", $_POST["team_name"], $user_id, $pokedex_number, $_POST["pokemon1"]);
             }
 
         }
@@ -93,67 +90,67 @@ class Controller {
         if(isset($_POST["pokemon2"])) {
             // if "None", then don't bother trying to do an insert
             // otherwise, insert into pokemon_team table with pokemon_name as the pokemon from the drop down menu
-            if($_POST["pokemon2"] != "None"){
-                $pokemon2 = $_POST["pokemon2"];
-                $pokedex_number =  $this->db->query("select pokedex_number from pokemon where name = '%$pokemon2%' ");
+            if($_POST["pokemon2"] != "none"){
+          
+               $pokedex_number2 =  $this->db->query("select pokedex_number from pokemon where name = ?;", "s" ,$_POST["pokemon2"]);
                 $insert = $this->db->query("insert into pokemon_team (team_name, uid, pokedex_number, pokemon_name) values (?, ?, ?, ?);", 
-                    "siis", $_POST["team_name"], $user_id, $pokedex_number, $_POST["pokemon2"]);
-            //    $pokedex_number =  $this->db->query("select pokedex_number from pokemon where name = ?;", "s" ,$_POST["pokemon2"]);
-            //     $insert = $this->db->query("insert into pokemon_team (team_name, uid, pokedex_number, pokemon_name) values (?, ?, ?, ?);", 
-            //         "siis", $_POST["team_name"], $user_id, $pokedex_number, $_POST["pokemon2"]);
+                    "siis", $_POST["team_name"], $user_id, $pokedex_number2, $_POST["pokemon2"]);
                 
 
                 
-            }
+            } 
 
 
         }
         if(isset($_POST["pokemon3"])) {
-            if($_POST["pokemon3"] != "None"){
-                $pokemon3 = $_POST["pokemon3"];
-                $pokedex_number =  $this->db->query("select pokedex_number from pokemon where name = '%$pokemon3%' ");
+            if($_POST["pokemon3"] != "none"){
+           
+               $pokedex_number3 =  $this->db->query("select pokedex_number from pokemon where name =?;", "s", $_POST["pokemon3"]);
                 $insert = $this->db->query("insert into pokemon_team (team_name, uid, pokedex_number, pokemon_name) values (?, ?, ?, ?);", 
-                    "siis", $_POST["team_name"], $user_id, $pokedex_number, $_POST["pokemon3"]);
-            //    $pokedex_number =  $this->db->query("select pokedex_number from pokemon where name =?;", "s", $_POST["pokemon3"]);
-            //     $insert = $this->db->query("insert into pokemon_team (team_name, uid, pokedex_number, pokemon_name) values (?, ?, ?, ?);", 
-            //         "siis", $_POST["team_name"], $user_id, $pokedex_number, $_POST["pokemon3"]);
+                    "siis", $_POST["team_name"], $user_id, $pokedex_number3, $_POST["pokemon3"]);
             }
 
         }
         if(isset($_POST["pokemon4"])) {
-            if($_POST["pokemon4"] != "None"){
-                $pokemon4 = $_POST["pokemon4"];
-                $pokedex_number =  $this->db->query("select pokedex_number from pokemon where name = '%$pokemon4%' ");
+            if($_POST["pokemon4"] != "none"){
+               
+               
+                $pokedex_number4 =  $this->db->query("select pokedex_number from pokemon where name =?;", "s", $_POST["pokemon4"]);
                 $insert = $this->db->query("insert into pokemon_team (team_name, uid, pokedex_number, pokemon_name) values (?, ?, ?, ?);", 
-                    "siis", $_POST["team_name"], $user_id, $pokedex_number, $_POST["pokemon4"]);
-                // $pokedex_number =  $this->db->query("select pokedex_number from pokemon where name =?;", "s", $_POST["pokemon4"]);
-                // $insert = $this->db->query("insert into pokemon_team (team_name, uid, pokedex_number, pokemon_name) values (?, ?, ?, ?);", 
-                //     "siis", $_POST["team_name"], $user_id, $pokedex_number, $_POST["pokemon4"]);
+                    "siis", $_POST["team_name"], $user_id, $pokedex_number4, $_POST["pokemon4"]);
             }
 
         }
         if(isset($_POST["pokemon5"])) {
-            if($_POST["pokemon5"] != "None"){
-                $pokemon5 = $_POST["pokemon5"];
-                $pokedex_number =  $this->db->query("select pokedex_number from pokemon where name = '%$pokemon5%' ");
+            if($_POST["pokemon5"] != "none"){
+   
+                $pokedex_number5 =  $this->db->query("select pokedex_number from pokemon where name =?;", "s", $_POST["pokemon5"]);
                 $insert = $this->db->query("insert into pokemon_team (team_name, uid, pokedex_number, pokemon_name) values (?, ?, ?, ?);", 
-                    "siis", $_POST["team_name"], $user_id, $pokedex_number, $_POST["pokemon5"]);
-                // $pokedex_number =  $this->db->query("select pokedex_number from pokemon where name =?;", "s", $_POST["pokemon5"]);
-                // $insert = $this->db->query("insert into pokemon_team (team_name, uid, pokedex_number, pokemon_name) values (?, ?, ?, ?);", 
-                //     "siis", $_POST["team_name"], $user_id, $pokedex_number, $_POST["pokemon5"]);
+                    "siis", $_POST["team_name"], $user_id, $pokedex_number5, $_POST["pokemon5"]);
             }
 
         }
         if(isset($_POST["pokemon6"])) {
-            if($_POST["pokemon6"] != "None"){
-                $pokemon6 = $_POST["pokemon6"];
-
-                $pokedex_number =  $this->db->query("select pokedex_number from pokemon where name = '%$pokemon6%' ");
+            if($_POST["pokemon6"] != "none"){
+                $pokedex_number6 =  $this->db->query("select pokedex_number from pokemon where name =?;", "s", $_POST["pokemon6"]);
                 $insert = $this->db->query("insert into pokemon_team (team_name, uid, pokedex_number, pokemon_name) values (?, ?, ?, ?);", 
-                    "siis", $_POST["team_name"], $user_id, $pokedex_number, $_POST["pokemon6"]);
+                    "siis", $_POST["team_name"], $user_id, $pokedex_number6, $_POST["pokemon6"]);
             }
 
         }
+        
+    
+
+    } else {
+
+        $error_msg = "Team name already exists. Use another name.";
+    }
+
+
+
+
+    // display the team
+    $user_pokemon_teams = $this->db->query("select team_name where uid = $user_id"); // get the team_name(s) of the user
 
 
 
