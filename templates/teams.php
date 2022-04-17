@@ -71,17 +71,74 @@
                         </li>';
                     }
                     ?>
-
-
-
                 </ul>
             </div>
         </div>
     </nav>
 
+        <?php if (!empty($error_msg)) { 
+          echo "<div class='alert alert-danger'>$error_msg</div>";
+        }
+        ?>
+        
+        <form action="?command=teams" method="post">
+        <h2>Build your team:</h2>
+        
+            <div class="mb-3">
+                <label for="team_name" class="form-label">Team Name</label>
+                <input type="team_name" class="form-control" id="team_name" name="team_name" required/>
+            </div>
+            <div class="mb-3">
+                <label> Choose a pokemon: </label>
+                <select name="pokemon1" id="pokemon1"> 
+                    <option value = "none"> None </option>
+                    <?php
+                     foreach($list_of_pokemon as $pokemon): ?>
+                        <option value =  "<?php echo $pokemon['name']; ?> " >  <?php echo $pokemon['name']; ?> </option>';
+                    <?php endforeach; ?>
 
+                </select>
+                <select name="pokemon2" id="pokemon2"> 
+                <option value = "none"> None </option>
+                    <?php
+                     foreach($list_of_pokemon as $pokemon): ?>
+                        <option value =  "<?php echo $pokemon['name']; ?> " >  <?php echo $pokemon['name']; ?> </option>';
+                    <?php endforeach; ?>
 
+                </select>
+                <select name="pokemon3" id="pokemon3"> 
+                <option value = "none"> None </option>
+                    <?php
+                     foreach($list_of_pokemon as $pokemon): ?>
+     
+                        <option value =  "<?php echo $pokemon['name']; ?> " >  <?php echo $pokemon['name']; ?> </option>';
 
+                </select>
+                <select name="pokemon4" id="pokemon4"> 
+                <option value = "none"> None </option>
+                    <?php
+                     foreach($list_of_pokemon as $pokemon): ?>
+                        <option value =  "<?php echo $pokemon['name']; ?> " >  <?php echo $pokemon['name']; ?> </option>';
+                       
+                    <?php endforeach; ?>
+
+                </select>
+                <select name="pokemon5" id="pokemon5"> 
+                <option value = "none"> None </option>
+                    <?php
+                     foreach($list_of_pokemon as $pokemon): ?>
+                  
+                        <option value =  "<?php echo $pokemon['name']; ?> " >  <?php echo $pokemon['name']; ?> </option>';
+        
+                    <?php endforeach; ?>
+
+                </select>
+                <select name="pokemon6" id="pokemon6"> 
+                <option value = "none"> None </option>
+                    <?php
+                     foreach($list_of_pokemon as $pokemon): ?>
+                        <option value =  "<?php echo $pokemon['name']; ?> " >  <?php echo $pokemon['name']; ?> </option>';
+                    <?php endforeach; ?>
 
     <form action="?command=teams" method="post">
         <h2>Build your team:</h2>
@@ -154,11 +211,44 @@
         <hr>
     </form>
 
-    <table class="w3-table w3-bordered w3-card-4" style="width:90%">
+        <table class="w3-table w3-bordered w3-card-4" style="width:90%">
+        
+            
+        <?php
+            foreach($user_pokemon_teams as $team): ?>
+            <thead>
+            <tr style="background-color:#B0B0B0">
+            <th>
+            <?php
+
+             
+                echo $team['team_name'];
+
+                $members = $db_for_teams->query("select pokemon_name, type1, type2 from pokemon_team natural join pokemon where uid = ? and team_name = ?", "is", $user_id, $team["team_name"]);
+
+                ?>
+                <tbody>
+             <?php  foreach($members as $pokemon): ?>
+                
+                <tr>
+                  <td>  <?php echo $pokemon['pokemon_name']; ?></td>
+                  <td> <?php echo $pokemon['type1']; ?> </td>
+                   <td> <?php echo $pokemon['type2']; ?></td>
+                </tr>
+                
+                <?php endforeach; ?>
+                
+             </tbody>
 
 
+                
+            </th>
+            </tr>
+            </thead>
+        
 
-    </table>
+
+        <?php endforeach; ?>
 
 
 
