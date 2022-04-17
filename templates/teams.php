@@ -4,7 +4,7 @@
 
 <!DOCTYPE html>
 <html>
-<h2> Welcome! (insert user here) </h2>
+
 
 <head>
         <meta charset="UTF-8"> 

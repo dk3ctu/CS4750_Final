@@ -1,12 +1,3 @@
-<?php
-
-
-require('classes/Controller.php');
-
-$all_pokemons = getAllPokemon();
-
-?>
-
 <!DOCTYPE html>
 <html>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -24,24 +15,15 @@ $all_pokemons = getAllPokemon();
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="?command=home">Home</a>
                         </li>
-    
                         <li class="nav-item">
                             <a class="nav-link" href="?command=teams">Teams</a>
                         </li>
-
                         <li class="nav-item">
                             <a class="nav-link" href="?command=pokedex">PokeDex</a>
                         </li>
-
-                        
                         <li class="nav-item">
                             <a class="nav-link" href="?command=login">Login</a>
                         </li>
-
-                        
-                        
-    
-                            
                     </ul>
                 </div>
             </div>
@@ -70,10 +52,9 @@ $all_pokemons = getAllPokemon();
     <th width="20%">Type 1</th>  
     <th width="20%">Type 2</th>  
     <th width="20%">Generation</th> 
-
   </tr>
   </thead>
-  <?php foreach ($all_pokemons as $pokemon): ?>
+  <?php foreach ($list_of_pokemon as $pokemon): ?>
   <tr>
     <td><?php echo $pokemon['abilities']; ?></td>
     <td><?php echo $pokemon['attack']; ?></td>
@@ -97,10 +78,7 @@ $all_pokemons = getAllPokemon();
    
   </tr>
   <?php endforeach; ?>
-
-  
   </table>
-
   </body>
 </html>
 

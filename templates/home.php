@@ -52,6 +52,21 @@
         
         
 
+
+        
+    <?php if (isset($_COOKIE["name"])) : ?>
+    <p> Welcome</p>
+    <strong>
+    <?php 
+
+        echo $_COOKIE["name"]; 
+
+         ?>
+</strong>
+
+<?php endif ?>
+
+
         <div class="col-sm-12 row" style="float: left;">
         <div class="container">
             <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
