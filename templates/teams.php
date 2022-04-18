@@ -70,7 +70,7 @@
           echo "<div class='alert alert-danger'>$error_msg</div>";
         }
         ?>
-
+     <?php if(!$aboutToUpdate) : ?>
         <form action="?command=teams" method="post">
             <h2>Build your team:</h2>
 
@@ -121,14 +121,116 @@
             <button type="submit" class="btn btn-success">Create</button>
             <hr>
         </form>
+                    
+        <?php endif ?>
+
+
+        <?php if($aboutToUpdate) : ?>
+        <form action="?command=actuallyUpdateTeam" method="post">
+            <h2>Change your team:</h2>
+
+            <div class="mb-3">
+                <label for="team_name" class="form-label">Team Name</label>
+                <input type="hidden" class="form-control" id="team_name" name="team_name" value = " <?php echo $team; ?>"required></input>
+            </div>
+            <div class="mb-3">
+                <label> Choose a pokemon: </label>
+                <select name="p1" id="p1">
+                    
+                    <option value="<?php echo $p1;?>"> <?php echo $p1;?> </option>
+                    <option value = "none"> None </option>
+                    <?php foreach($list_of_pokemon as $pokemon): ?>
+                    <option value="<?php echo $pokemon['name']; ?> "> <?php echo $pokemon['name']; ?> </option>';
+                    <?php endforeach; ?>
+                </select>
+                <select name="p2" id="p2">
+              
+                <option value="<?php echo $p2;?>"> <?php echo $p2;?> </option>
+                <option value = "none"> None </option>
+                    <?php foreach($list_of_pokemon as $pokemon): ?>
+                    <option value="<?php echo $pokemon['name']; ?> "> <?php echo $pokemon['name']; ?> </option>';
+                    <?php endforeach; ?>
+                </select>
+                <select name="p3" id="p3">
+         
+                <option value="<?php echo $p3;?>"> <?php echo $p3;?> </option>
+                <option value = "none"> None </option>
+                    <?php foreach($list_of_pokemon as $pokemon): ?>
+                    <option value="<?php echo $pokemon['name']; ?> "> <?php echo $pokemon['name']; ?> </option>';
+                    <?php endforeach; ?>
+                </select>
+                <select name="p4" id="p4">
+               
+                <option value="<?php echo $p4;?>"> <?php echo $p4;?> </option>
+                <option value = "none"> None </option>
+                    <?php foreach($list_of_pokemon as $pokemon): ?>
+                    <option value="<?php echo $pokemon['name']; ?> "> <?php echo $pokemon['name']; ?> </option>';
+                    <?php endforeach; ?>
+                </select>
+                <select name="p5" id="p5">
+               
+                <option value="<?php echo $p5;?>"> <?php echo $p5;?> </option>
+                <option value = "none"> None </option>
+                    <?php foreach($list_of_pokemon as $pokemon): ?>
+                    <option value="<?php echo $pokemon['name']; ?> "> <?php echo $pokemon['name']; ?> </option>';
+                    <?php endforeach; ?>
+                </select>
+                <select name="p6" id="p6">
+           
+                <option value="<?php echo $p6;?>"> <?php echo $p6;?> </option>
+                <option value = "none"> None </option>
+                    <?php foreach($list_of_pokemon as $pokemon): ?>
+                    <option value="<?php echo $pokemon['name']; ?> "> <?php echo $pokemon['name']; ?> </option>';
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <hr>
+            <button type="submit" class="btn btn-success">Update</button>
+
+
+            <hr>
+         </form>
+                    
+        <?php endif ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         <?php foreach($user_pokemon_teams as $team): ?>
-        <button type="update" class="btn btn-warning"> Change</button>
-        <button type="delete" class="btn btn-danger"> Delete Team </button>
+        <form action="?command=updateTeam" method="post">
+            <input type="submit" value="Change" name="btnAction" class="btn btn-warning" />
+            <input type="hidden" name="team_to_update" value="<?php echo $team['team_name']; ?>" id="team_to_update"></input>
+           
+        </form>
+        <form action="?command=deleteTeam" method="post">
+            <button type="delete" class="btn btn-danger"> Delete Team </button>
+            <input type="hidden" value = "<?php echo $team['team_name']; ?>" name="team_name" id="team_name"></input>
+        </form>
         <table class="table table-striped">
             <tr>
-                <th scope="col" style="width: 16%;"><?php echo $team['team_name']; ?></th>
+                <th scope="col" style="width: 16%; font-size:24px"><?php echo $team['team_name']; ?></th>
             </tr>
         </table>
         <table class="table table-striped">
@@ -289,12 +391,12 @@
         </table>
         <table class="table table-striped">
             <tr>
-                <th scope="col" style="width: 16%;">Bug</th>
-                <th scope="col" style="width: 16%;">Dark</th>
-                <th scope="col" style="width: 16%;">Dragon</th>
-                <th scope="col" style="width: 16%;">Electric</th>
-                <th scope="col" style="width: 16%;">Fairy</th>
-                <th scope="col" style="width: 16%;">Fighting</th>
+                <th scope="col" style="width: 16%; background-color:#A6B91A">Bug</th>
+                <th scope="col" style="width: 16%; background-color:#705746">Dark</th>
+                <th scope="col" style="width: 16%; background-color:#6F35FC">Dragon</th>
+                <th scope="col" style="width: 16%; background-color:#F7D02C">Electric</th>
+                <th scope="col" style="width: 16%; background-color:#D685AD">Fairy</th>
+                <th scope="col" style="width: 16%; background-color:#C22E28">Fighting</th>
             </tr>
             <tr>
                 <td><?php echo $bug_weakness; ?></td>
@@ -305,12 +407,12 @@
                 <td><?php echo $fighting_weakness; ?></td>
             </tr>
             <tr>
-                <th scope="col" style="width: 16%;">Fire</th>
-                <th scope="col" style="width: 16%;">Flying</th>
-                <th scope="col" style="width: 16%;">Ghost</th>
-                <th scope="col" style="width: 16%;">Grass</th>
-                <th scope="col" style="width: 16%;">Ground</th>
-                <th scope="col" style="width: 16%;">Ice</th>
+                <th scope="col" style="width: 16%; background-color:#EE8130">Fire</th>
+                <th scope="col" style="width: 16%; background-color:#A98FF3">Flying</th>
+                <th scope="col" style="width: 16%; background-color:#735797">Ghost</th>
+                <th scope="col" style="width: 16%; background-color:#7AC74C">Grass</th>
+                <th scope="col" style="width: 16%; background-color:#E2BF65">Ground</th>
+                <th scope="col" style="width: 16%; background-color:#96D9D6">Ice</th>
             </tr>
             <tr>
                 <td><?php echo $fire_weakness; ?></td>
@@ -321,12 +423,12 @@
                 <td><?php echo $ice_weakness; ?></td>
             </tr>
             <tr>
-                <th scope="col" style="width: 16%;">Normal</th>
-                <th scope="col" style="width: 16%;">Poison</th>
-                <th scope="col" style="width: 16%;">Psychic</th>
-                <th scope="col" style="width: 16%;">Rock</th>
-                <th scope="col" style="width: 16%;">Steel</th>
-                <th scope="col" style="width: 16%;">Water</th>
+                <th scope="col" style="width: 16%; background-color:#A8A77A">Normal</th>
+                <th scope="col" style="width: 16%; background-color:#A33EA1">Poison</th>
+                <th scope="col" style="width: 16%; background-color:#F95587">Psychic</th>
+                <th scope="col" style="width: 16%; background-color:#B6A136">Rock</th>
+                <th scope="col" style="width: 16%; background-color:#B7B7CE">Steel</th>
+                <th scope="col" style="width: 16%; background-color:#6390F0">Water</th>
             </tr>
             <tr>
                 <td><?php echo $normal_weakness; ?></td>
@@ -344,12 +446,13 @@
         </table>
         <table class="table table-striped">
             <tr>
-                <th scope="col" style="width: 16%;">Bug</th>
-                <th scope="col" style="width: 16%;">Dark</th>
-                <th scope="col" style="width: 16%;">Dragon</th>
-                <th scope="col" style="width: 16%;">Electric</th>
-                <th scope="col" style="width: 16%;">Fairy</th>
-                <th scope="col" style="width: 16%;">Fighting</th>
+                <th scope="col" style="width: 16%; background-color:#A6B91A">Bug</th>
+                <th scope="col" style="width: 16%; background-color:#705746">Dark</th>
+                <th scope="col" style="width: 16%; background-color:#6F35FC">Dragon</th>
+                <th scope="col" style="width: 16%; background-color:#F7D02C">Electric</th>
+                <th scope="col" style="width: 16%; background-color:#D685AD">Fairy</th>
+                <th scope="col" style="width: 16%; background-color:#C22E28">Fighting</th>
+
             </tr>
             <tr>
                 <td><?php echo $bug_resistance; ?></td>
@@ -360,12 +463,12 @@
                 <td><?php echo $fighting_resistance; ?></td>
             </tr>
             <tr>
-                <th scope="col" style="width: 16%;">Fire</th>
-                <th scope="col" style="width: 16%;">Flying</th>
-                <th scope="col" style="width: 16%;">Ghost</th>
-                <th scope="col" style="width: 16%;">Grass</th>
-                <th scope="col" style="width: 16%;">Ground</th>
-                <th scope="col" style="width: 16%;">Ice</th>
+                <th scope="col" style="width: 16%; background-color:#EE8130">Fire</th>
+                <th scope="col" style="width: 16%; background-color:#A98FF3">Flying</th>
+                <th scope="col" style="width: 16%; background-color:#735797">Ghost</th>
+                <th scope="col" style="width: 16%; background-color:#7AC74C">Grass</th>
+                <th scope="col" style="width: 16%; background-color:#E2BF65">Ground</th>
+                <th scope="col" style="width: 16%; background-color:#96D9D6">Ice</th>
             </tr>
             <tr>
                 <td><?php echo $fire_resistance; ?></td>
@@ -376,12 +479,12 @@
                 <td><?php echo $ice_resistance; ?></td>
             </tr>
             <tr>
-                <th scope="col" style="width: 16%;">Normal</th>
-                <th scope="col" style="width: 16%;">Poison</th>
-                <th scope="col" style="width: 16%;">Psychic</th>
-                <th scope="col" style="width: 16%;">Rock</th>
-                <th scope="col" style="width: 16%;">Steel</th>
-                <th scope="col" style="width: 16%;">Water</th>
+                <th scope="col" style="width: 16%; background-color:#A8A77A">Normal</th>
+                <th scope="col" style="width: 16%; background-color:#A33EA1">Poison</th>
+                <th scope="col" style="width: 16%; background-color:#F95587">Psychic</th>
+                <th scope="col" style="width: 16%; background-color:#B6A136">Rock</th>
+                <th scope="col" style="width: 16%; background-color:#B7B7CE">Steel</th>
+                <th scope="col" style="width: 16%; background-color:#6390F0">Water</th>
             </tr>
             <tr>
                 <td><?php echo $normal_resistance; ?></td>

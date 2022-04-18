@@ -11,9 +11,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // echo print_r($_POST);
         // echo "</pre>";
         $list_of_users = $this->db->query("select * from user where name like '%" . $_POST["searchValue"] . "%'");
-
-   
-
     }
 }
 ?>
@@ -79,6 +76,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
         </form>
+
+
+       
         <br>
         <table class="table table-striped">
             <tr>
@@ -95,17 +95,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <td><?php echo $user['email']; ?></td>
                 <td><?php echo $user['name']; ?></td>
                 <td> 
+                <?php if ($user['admin'] != 1): ?>
                 <form action = "?command=updateUser" method="post">
                 <button type="submit"  class ="btn btn-primary">Update</button>
                 <input type ="hidden" value = "<?php echo $user['email']; ?>" name = "userEmail" id = "userEmail" ></input>
             </form>
-
+            <?php endif ?>
+                </td>
+                <td>
+            <?php if ($user['admin'] != 1): ?>
+                <form action = "?command=deleteUser" method="post">
+                <button type="submit"  class ="btn btn-danger">Delete</button>
+                <input type ="hidden" value = "<?php echo $user['email']; ?>" name = "userEmail2" id = "userEmail2" ></input>
+            </form>
+            <?php endif ?> 
 
             </td>
             </tr>
             <?php endforeach; ?>
         </table>
     </div>
+
+    <?php if (isset($email) && isset($name)): ?>
+    <form action = "?command=actuallyUpdate" method ="post">
+        <label for ="email"> Email: </label>
+        <input value ="<?php echo $email; ?>" name = "email" id = "email"> </input> 
+        <label for = "name"> Name: </label>
+        <input value ="<?php echo $name; ?>" name = "name" id = "name"> </input> 
+        <input type="hidden" value="<?php echo $uid; ?>" name = "uid" id = "uid"></input>
+        <button type = "submit" class ="btn btn-success">Update!</button>
+    </form>
+    <?php endif ?>
 </body>
 
 </html>

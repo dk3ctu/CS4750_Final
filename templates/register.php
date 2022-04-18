@@ -39,7 +39,7 @@
                         <a class="nav-link" href="?command=teams">Teams</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="?command=pokedex">Pokédex</a>
+                        <a class="nav-link" href="?command=pokedex">Pokédex</a>
                     </li>
                     <?php if (isset($_COOKIE['admin'])) : ?>
                     <li class="nav-item">
