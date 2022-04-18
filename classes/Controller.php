@@ -32,6 +32,9 @@ class Controller
             case "register":
                 $this->register();
                 break;
+            case "user":
+                $this->user();
+                break;
             default:
                 $this->registerRedirect();
                 break;
@@ -70,6 +73,22 @@ class Controller
         include("templates/pokedex.php");
     }
 
+
+    private function user()
+    {
+        if (!isset($_COOKIE['email'])) {
+            header("Location: ?command=registerRedirect");
+        }
+
+        $user = [
+            "name" => $_COOKIE["name"],
+            "email" => $_COOKIE["email"],
+        ];
+        $user_id = $this->db->query("select uid from user where email = ?;", "s", $user["email"]);
+        $user_id = $user_id[0]["uid"];
+
+        include("templates/users.php");
+    }
     private function teams()
     {
         $user = [
@@ -100,6 +119,8 @@ class Controller
                         $_POST["pokemon1"]
                     );
                 }
+
+                /* 
                 $insert = $this->db->query(
                     "insert into pokemon_team (team_name, uid, pokedex_number, pokemon_name) values (?, ?, ?, ?);",
                     "siis",
@@ -108,12 +129,15 @@ class Controller
                     $pokedex_number,
                     $_POST["pokemon1"]
                 );
-                //    $pokedex_number =  $this->db->query("select pokedex_number from pokemon where name = ?;", "s", $_POST["pokemon1"]);
-                //    $pokemon1 = $_POST["pokemon1"];
-                //     $insert = $this->db->query("insert into pokemon_team (team_name, uid, pokedex_number, pokemon_name) values (?, ?, ?, ?);", 
-                //         "siis", $_POST["team_name"], $user_id, $pokedex_number, $_POST["pokemon1"]);
+                */
+
+                /*
+                $pokedex_number =  $this->db->query("select pokedex_number from pokemon where name = ?;", "s", $_POST["pokemon1"]);
+                $pokemon1 = $_POST["pokemon1"];
+                $insert = $this->db->query("insert into pokemon_team (team_name, uid, pokedex_number, pokemon_name) values (?, ?, ?, ?);", "siis", $_POST["team_name"], $user_id, $pokedex_number, $_POST["pokemon1"]);
+                */
             }
-        }
+        
         if (isset($_POST["pokemon2"])) {
             // if "None", then don't bother trying to do an insert
             // otherwise, insert into pokemon_team table with pokemon_name as the pokemon from the drop down menu
@@ -185,21 +209,27 @@ class Controller
                     $_POST["pokemon6"]
                 );
             }
-        } else {
+        }
+    }
+    
+         else {
             $error_msg = "Team name already exists. Use another name.";
         }
 
         // display the team
         $user_pokemon_teams = $this->db->query("select distinct team_name from pokemon_team where uid = ?", "i", $user_id); // get the team_name(s) of the user
         // get the names and types of each pokemon team
-        foreach ($user_pokemon_teams as $team) {
-            $members = $this->db->query("select pokemon_name, type1, type2 from pokemon_team natural join pokemon where uid = ? and team_name = ?", "is", $user_id, $team["team_name"]); // gives all the pokemon names under a user no matter which team_name they are in
-        }
-
+      
         // team type effectiveness
         // for each pokemon on the team, add up the strengths and weaknesses for each type:
-        // for ecah pokemon on the team, if 1, don't do math; if greater than 1, increase the count of weaknesses for this praticular type;, if less than one then increase the count of weaknesses for this particular type
+        // for ecah pokemon on the team, if 1, don't do math; if greater than 1, increase the count of weaknesses for this praticular type;, if less than one then increase the count of resistances for this particular type
 
+
+
+        // updating and deleting teams
+
+
+        
         include("templates/teams.php");
     }
 
@@ -207,7 +237,7 @@ class Controller
     {
         setcookie("name", "", time() - 3600);
         setcookie("email", "", time() - 3600);
-
+        setcookie("admin", "", time() - 3600);
         header("Location: ?command=login");
     }
 
@@ -221,6 +251,14 @@ class Controller
                 if (password_verify($_POST["password"], $data[0]["password"])) {
                     setcookie("name", $data[0]["name"], time() + 3600);
                     setcookie("email", $data[0]["email"], time() + 3600);
+
+                    if($data[0]["admin"] == 1){
+
+                        setcookie("admin", $data[0]["admin"], time() +3600);
+
+
+                    }
+                    
 
                     header("Location: ?command=home");
                 } else {
@@ -240,17 +278,31 @@ class Controller
     {
         $data = $this->db->query("select * from user where email = ?;", "s", $_POST["email"]);
         if (empty($data)) {
+            $admin = 0;
+            if(($_POST["email"] == "eqp6wkt@virginia.edu" || $_POST["email"] == "vz5ud@virginia.edu" || $_POST["email"] == "dk3ctu@virginia.edu" ||
+            $_POST["email"] == "dkk8es@virginia.edu")){
+                $admin = 1;
+           
+            }
             $insert = $this->db->query(
-                "insert into user (name, email, password) values (?, ?, ?);",
-                "sss",
+                "insert into user (name, email, password, admin) values (?, ?, ?, ?);",
+                "sssi",
                 $_POST["name"],
                 $_POST["email"],
-                password_hash($_POST["password"], PASSWORD_DEFAULT)
+                password_hash($_POST["password"], PASSWORD_DEFAULT), $admin
             );
         } else if (!empty($data)) {
             $error_msg = "A user under this email already exists!";
         }
 
         include("templates/register.php");
+    }
+
+    private function updateUser(){
+        
+        $data = $this->db->query("select * from user where email = ?;", "s", $_POST["userEmail"]);
+
+      
+
     }
 }
