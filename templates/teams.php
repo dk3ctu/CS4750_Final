@@ -220,7 +220,7 @@
 
         <?php foreach($user_pokemon_teams as $team): ?>
         <form action="?command=updateTeam" method="post">
-            <input type="submit" value="Change" name="btnAction" class="btn btn-warning" />
+            <input type="hidden" value="Change" name="btnAction" class="btn btn-warning" />
             <input type="hidden" name="team_to_update" value="<?php echo $team['team_name']; ?>" id="team_to_update"></input>
            
         </form>
